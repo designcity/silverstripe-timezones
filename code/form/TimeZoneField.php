@@ -34,8 +34,15 @@ class TimeZoneField extends DropdownField {
 		if (!$source) $source = TimeZone::get();
 
 		// default to setting defined in php configuration
-		if ($defaultTZ = TimeZone::get()->where("Identifier='".date_default_timezone_get()."'")->First()) {
-			if (!$emptyString) parent::setEmptyString($defaultTZ->Title);
+		if($this->config()->useDefaultServerTimeZone) {
+			// default to setting defined in php configuration
+			if ($defaultTZ = TimeZone::get()->where("Identifier='".date_default_timezone_get()."'")->First()) {
+				if (!$emptyString) parent::setEmptyString($defaultTZ->Title);
+			}
+		} else {
+			if ($defaultTZ = TimeZone::get()->where("Identifier='UTC'")->First()) {
+				if (!$emptyString) parent::setEmptyString($defaultTZ->Title);
+			}
 		}
 
 		// leave the actual field
