@@ -31,7 +31,7 @@ class TimeZoneField extends DropdownField {
 		}
 
 		// if no source has been defined we assume the default time zones will be used
-		if (!$source) $source = TimeZone::get();
+		if (!$source) $source = TimeZoneData::get();
 
 		// default to setting defined in php configuration
 		if($this->config()->useDefaultServerTimeZone) {

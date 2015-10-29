@@ -24,7 +24,7 @@ The provided data comes from PHPs built-in function [`timezone_identifiers_list(
 
 ## Dropdown Field
 
-If you want to use the dropdown field you can
+If you want to use the dropdown field you can simply add a timezone to your db fields:
 
 ```
 <?php
@@ -33,7 +33,7 @@ class MyPage extends Page {
 	 * @var array
 	 */
 	private static $db = array(
-		'TimeZone' => 'Varchar'
+		'UserTimeZone' => 'TimeZone'
 	);
 
 	/**
@@ -62,7 +62,7 @@ You can change the default format of the time zone in the dropdown menu by creat
 
 ```
 Injector:
-  TimeZone:
+  TimeZoneData:
     properties:
       format: '%Name (%Region)'
 ```
